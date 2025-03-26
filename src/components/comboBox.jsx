@@ -10,10 +10,22 @@ const ComboBox = ({ onSelect, placeholder = "Search Events" }) => {
 
   useEffect(() => {
     fetch("/data/suggestions.json")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
-        setOptions(data.options);
-        setFilteredOptions(data.options);
+        if (data && Array.isArray(data.options)) {
+          setOptions(data.options);
+          setFilteredOptions(data.options);
+        } else {
+          console.error("Invalid data format: 'options' should be an array.");
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch suggestions:", error);
       });
   }, []);
 
