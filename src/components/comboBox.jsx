@@ -2,32 +2,52 @@ import React, { useState, useEffect, useRef } from "react";
 
 const ComboBox = ({ onSelect, placeholder = "Search Events" }) => {
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState([]); 
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [options, setOptions] = useState([
+    "Conference",
+    "Workshop",
+    "Seminar",
+    "Webinar",
+    "Meetup",
+    "Hackathon",
+    "Networking",
+    "Training",
+    "Charity Event",
+    "Music Festival",
+    "Art Exhibition",
+    "Startup Pitch",
+    "Book Launch",
+    "Community Gathering",
+    "Tech Talk",
+    "Sports Event",
+    "Cultural Festival",
+    "Food Tasting",
+    "Photography Walk",
+    "Coding Bootcamp",
+    "Film Screening",
+    "Dance Performance",
+    "Yoga Retreat",
+    "Meditation Session",
+    "Career Fair",
+    "Product Launch",
+    "Volunteer Drive",
+    "Gaming Tournament",
+    "Science Fair",
+    "Open Mic Night",
+    "Stand-Up Comedy",
+    "Poetry Slam",
+    "Cooking Class",
+    "Language Exchange",
+    "Historical Tour",
+    "Environmental Cleanup",
+    "Charity Auction",
+    "Pet Adoption Drive",
+    "Fitness Bootcamp",
+    "Virtual Reality Experience"
+  ]); 
+  const [filteredOptions, setFilteredOptions] = useState(options);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const comboBoxRef = useRef(null);
-
-  useEffect(() => {
-    fetch("/data/suggestions.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data && Array.isArray(data.options)) {
-          setOptions(data.options);
-          setFilteredOptions(data.options);
-        } else {
-          console.error("Invalid data format: 'options' should be an array.");
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch suggestions:", error);
-      });
-  }, []);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
