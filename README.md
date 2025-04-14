@@ -4,6 +4,8 @@ A minimal setup to kickstart your **React** app using **Vite** with **HMR (Hot M
 
 > ⚡ Fast build. 🔥 Instant updates. 🧹 Clean code.
 
+🌐 [Live Demo](https://communion-hub-neon-nine.vercel.app/)
+
 ---
 
 ## 🧩 Plugins Included
